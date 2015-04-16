@@ -25,18 +25,18 @@ void setup() {
   pinMode(servoRight, OUTPUT);
   
   pinMode(driverPower, OUTPUT);
-  pinMode(driverPolarity = OUTPUT);
+  pinMode(driverPolarity, OUTPUT);
 
 
   pinMode(LEDPin, OUTPUT);
 }
 
 void loop() {
-  main();
+  function();
 }
 
 
-void main(){ 
+void function(){ 
   int valueX = pulseIn(rightXPin, HIGH);
   int valueY = pulseIn(rightYPin, HIGH);
   int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
@@ -53,7 +53,8 @@ void main(){
     else if (yAxis = 2){                     //Test for Forward
      driverForward();
     }
-    else {digitalWrite(LEDPin, HIGH)};
+    else {
+      digitalWrite(LEDPin, HIGH);
   }
     xAxis = map(rightXPin, 1000, 1800, 1000, 2000);
      analogWrite(steeringPin, xAxis);
