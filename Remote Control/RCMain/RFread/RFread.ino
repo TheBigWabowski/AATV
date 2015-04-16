@@ -26,6 +26,7 @@ void setup() {
 
   pinMode(driverPower, OUTPUT);
   pinMode(driverPolarity, OUTPUT);
+  pinMode(steeringPin, OUTPUT);
 
 
   pinMode(LEDPin, OUTPUT);
@@ -42,7 +43,7 @@ void function() {
   int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
 
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
-  if (shouldRun) {                                   //Test for Kill Switch
+  if (shouldRun) {                                 //Test for Kill Switch
     yAxis = map(rightYPin, 1000, 1800, 0, 2);
     if (yAxis = 0) {                                    //Test for Reverse
       driveReverse();

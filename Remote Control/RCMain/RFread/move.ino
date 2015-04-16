@@ -4,15 +4,23 @@ const int rightForwardFast = 2000;
 const int rightReverseFast = 1000;
 
 void driveForward(){
-  
+  digitalWrite(LEDPin, HIGH);
+  delay(100);
+  digitalWrite(LEDPin, LOW);
+  digitalWrite(driverPower, HIGH);
+  digitalWrite(driverPolarity, HIGH); 
 }
 
 void driveReverse(){
-  
+  digitalWrite(LEDPin, HIGH);
+  delay(100);
+  digitalWrite(LEDPin, LOW);
+  digitalWrite(driverPower, HIGH);
+  digitalWrite(driverPolarity, LOW);
 }
 
 void driveStop(){
-  
+  digitalWrite(driverPower, LOW);  
 }
 
 //Movement:
@@ -87,4 +95,5 @@ void ServoMove(int servo,int PW){
 
 
 
-  
+
+
