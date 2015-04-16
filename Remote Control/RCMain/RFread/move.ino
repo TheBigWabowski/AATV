@@ -3,13 +3,16 @@ const int leftReverseFast = 2000;
 const int rightForwardFast = 2000;
 const int rightReverseFast = 1000;
 
-void practiceDriverForward(){
- //digitalWrite(LEDPin, HIGH);
- digitalWrite(driverPin, HIGH);
- delay(100);
- digitalWrite(driverPin, LOW);
- delay(3000); 
- while(true);
+void driverForward(){
+  
+}
+
+void driverReverse(){
+  
+}
+
+void driverStop(){
+  
 }
 
 //Movement:
