@@ -3,15 +3,15 @@ const int leftReverseFast = 2000;
 const int rightForwardFast = 2000;
 const int rightReverseFast = 1000;
 
-void driverForward(){
+void driveForward(){
   
 }
 
-void driverReverse(){
+void driveReverse(){
   
 }
 
-void driverStop(){
+void driveStop(){
   
 }
 

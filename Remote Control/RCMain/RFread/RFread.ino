@@ -18,12 +18,12 @@ void setup() {
   Serial.begin(9600);
   pinMode(rightXPin, INPUT);
   pinMode(rightYPin, INPUT);
-  
+
   pinMode(killSwitchPin, INPUT);
 
   pinMode(servoLeft, OUTPUT);
   pinMode(servoRight, OUTPUT);
-  
+
   pinMode(driverPower, OUTPUT);
   pinMode(driverPolarity, OUTPUT);
 
@@ -36,7 +36,7 @@ void loop() {
 }
 
 
-void function(){ 
+void function() {
   int valueX = pulseIn(rightXPin, HIGH);
   int valueY = pulseIn(rightYPin, HIGH);
   int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
@@ -44,19 +44,20 @@ void function(){
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
   if (shouldRun) {                                   //Test for Kill Switch
     yAxis = map(rightYPin, 1000, 1800, 0, 2);
-    if (yAxis = 0){                                     //Test for Reverse
-      driverReverse();
+    if (yAxis = 0) {                                    //Test for Reverse
+      driveReverse();
     }
-    else if (yAxis = 1){                              //Test for No Movement
-     driverStop(); 
+    else if (yAxis = 1) {                             //Test for No Movement
+      driveStop();
     }
-    else if (yAxis = 2){                     //Test for Forward
-     driverForward();
+    else if (yAxis = 2) {                    //Test for Forward
+      driveForward();
     }
     else {
       digitalWrite(LEDPin, HIGH);
-  }
+    }
     xAxis = map(rightXPin, 1000, 1800, 1000, 2000);
-     analogWrite(steeringPin, xAxis);
-  delay(10);
+    analogWrite(steeringPin, xAxis);
+    delay(10);
+  }
 }
