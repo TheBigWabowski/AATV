@@ -29,8 +29,6 @@ void rightFast(int x){
 }
 
 
-
-
 //Steps:
 
 void forwardStepFast(){
