@@ -1,15 +1,16 @@
+
 // Copyright Ephraim Benson 2015
 
-byte rightXPin = 0;
-byte rightYPin = 1;
-byte killSwitchPin = 3;
+const byte rightXPin = 0;
+const byte rightYPin = 1;
+const byte killSwitchPin = 3;
 
-byte servoSteering  = 4;
+const byte driverPin = 9;
 
-byte servoLeft = 10;
-byte servoRight = 11;
+const byte servoLeft = 10;
+const byte servoRight = 11;
 
-byte LED = 13;
+const byte LEDPin = 13;
 
 void setup() {
   Serial.begin(9600);
@@ -20,8 +21,10 @@ void setup() {
   pinMode(servoLeft, OUTPUT);
   pinMode(servoRight, OUTPUT);
   pinMode(servoSteering, OUTPUT);
+  pinMode(driverPin, OUTPUT);
 
-  pinMode(LED, OUTPUT);
+
+  pinMode(LEDPin, OUTPUT);
 }
 
 void loop() {
@@ -48,6 +51,9 @@ void loop() {
     	Serial.println("forward");
     	ServoMove(servoSteering, 1500);
     }
+    
+    practiceDriverForward();
+
     delay(20);
   }
 }
