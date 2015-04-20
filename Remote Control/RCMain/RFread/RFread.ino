@@ -34,6 +34,7 @@ void setup() {
 
 void loop() {
   function();
+  //debugRemote();
 }
 
 
@@ -43,22 +44,48 @@ void function() {
   int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
 
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
-  if (shouldRun) {                                 //Test for Kill Switch
-    yAxis = map(rightYPin, 1000, 1800, 0, 2);
-    if (yAxis = 0) {                                    //Test for Reverse
+  if (shouldRun) {                                     //Test for Kill Switch
+    Serial.println("ON");
+    yAxis = map(valueY, 1000, 1800, 0, 2);
+    if (yAxis == 0) {                                    //Test for Reverse
       driveReverse();
+      debug(LEDPin);
+      Serial.println("REVERSE");
     }
-    else if (yAxis = 1) {                             //Test for No Movement
+    else if (yAxis == 1) {                             //Test for No Movement
       driveStop();
+      debug(LEDPin);
+      Serial.println("STILL");
     }
-    else if (yAxis = 2) {                    //Test for Forward
+    else if (yAxis == 2) {                    //Test for Forward
       driveForward();
+      debug(LEDPin);
+      Serial.println("FORWARD");
     }
     else {
-      digitalWrite(LEDPin, HIGH);
+      digitalWrite(LEDPin, LOW);
     }
-    xAxis = map(rightXPin, 1000, 1800, 1000, 2000);
+    xAxis = map(valueX, 1000, 1800, 1000, 2000);
     analogWrite(steeringPin, xAxis);
     delay(10);
   }
+  else{
+    Serial.println("OFF");
+  }
+  delay(100);
 }
+
+void debug(int pin){
+  digitalWrite(pin, HIGH); 
+}
+
+void debugRemote(){
+  int valueX = pulseIn(rightXPin, HIGH);
+  int valueY = pulseIn(rightYPin, HIGH);
+  int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+
+  Serial.print("Value X = " + (String)valueX + "; Value Y = " + (String)valueY + "; Kill Switch = " + (String)valueKillSwitch);   
+  Serial.println("");
+  delay(100);
+}
+
