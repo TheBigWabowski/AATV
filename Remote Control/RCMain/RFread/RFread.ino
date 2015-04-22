@@ -33,8 +33,16 @@ void setup() {
 }
 
 void loop() {
-  //function();
-  debugRemote();
+  function();
+  //debugRemote();
+//  digitalWrite(driverPolarity, HIGH);
+//  delay(500);
+//  digitalWrite(driverPolarity, LOW);
+//  delay(500);
+//  digitalWrite(driverPower, HIGH);
+//  delay(500);
+//  digitalWrite(driverPower, LOW);
+//  delay(500);
 }
 
 
@@ -45,22 +53,18 @@ void function() {
 
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
   if (shouldRun) {                                     //Test for Kill Switch
-    Serial.println("ON");
-    //yAxis = map(valueY, 1000, 1800, 0, 2);
-    if (yAxis < 1450) {                                    //Test for Reverse
-      driveReverse();
-      debug(LEDPin);
-      Serial.println("REVERSE");
+    //Serial.println("ON");
+    if (valueY > 1460) {                                    //Test for Reverse
+      driveForward();
+      Serial.println("FORWARD");
     }
     
-    else if (yAxis > 1460) {                    //Test for Forward
-      driveForward();
-      debug(LEDPin);
-      Serial.println("FORWARD");
+    else if (valueY < 1390) {                    //Test for Forward
+      driveReverse();
+      Serial.println("REVERSE");
     }
     else{                             //Test for No Movement
       driveStop();
-      //debug(LEDPin);
       Serial.println("STILL");
     }
     xAxis = map(valueX, 1000, 1800, 1000, 2000);
