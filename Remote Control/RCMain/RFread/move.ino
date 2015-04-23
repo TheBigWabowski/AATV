@@ -3,18 +3,19 @@ const int leftReverseFast = 2000;
 const int rightForwardFast = 2000;
 const int rightReverseFast = 1000;
 
-void driveForward(){
+void driveReverse(){
   digitalWrite(driverPower, HIGH);
   digitalWrite(driverPolarity, HIGH); 
 }
 
-void driveReverse(){
+void driveForward+++(){
   digitalWrite(driverPower, HIGH);
   digitalWrite(driverPolarity, LOW);
 }
 
 void driveStop(){
   digitalWrite(driverPower, LOW);  
+  digitalWrite(driverPolarity, LOW);
 }
 
 //Movement:

@@ -35,6 +35,7 @@ void setup() {
 void loop() {
   function();
   //debugRemote();
+  //debug(LEDPin);
 //  digitalWrite(driverPolarity, HIGH);
 //  delay(500);
 //  digitalWrite(driverPolarity, LOW);
@@ -52,7 +53,8 @@ void function() {
   int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
 
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
-  if (shouldRun) {                                     //Test for Kill Switch
+    if (shouldRun) {                                   //Test for Kill Switch
+    debug(LEDPin);
     //Serial.println("ON");
     if (valueY > 1460) {                                    //Test for Reverse
       driveForward();
