@@ -1,0 +1,7 @@
+killswitch = 5
+rightx = 0
+righty = 1
+
+leftFaceKnob = 6
+
+bigLeftSwitch = 7
