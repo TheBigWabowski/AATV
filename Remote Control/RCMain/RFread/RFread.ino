@@ -30,6 +30,7 @@ void setup() {
 
   pinMode(driverPower, OUTPUT);
   pinMode(driverPolarity, OUTPUT);
+  pinMode(steeringPin, OUTPUT);
 
 
   pinMode(LEDPin, OUTPUT);
@@ -45,27 +46,49 @@ void loop() {
     function();
     // autonomous switch here
   }
+  //debugRemote();
+  //debug(LEDPin);
+//  digitalWrite(driverPolarity, HIGH);
+//  delay(500);
+//  digitalWrite(driverPolarity, LOW);
+//  delay(500);
+//  digitalWrite(driverPower, HIGH);
+//  delay(500);
+//  digitalWrite(driverPower, LOW);
+//  delay(500);
 }
 
 
 void function() {
   yAxis = map(rightYPin, 1000, 1800, 0, 2);
-  if (yAxis = 0) {                                    //Test for Reverse
+  if (yAxis == 0) {                                    //Test for Reverse
     driveReverse();
     Serial.println("Reverse");
   }
-  else if (yAxis = 1) {                             //Test for No Movement
+  else if (yAxis == 1) {                             //Test for No Movement
     driveStop();
     Serial.println("No Movement");
   }
-  else if (yAxis = 2) {                    //Test for Forward
+  else if (yAxis == 2) {                    //Test for Forward
     driveForward();
     Serial.println("Forward");
   }
   else {
     digitalWrite(LEDPin, HIGH);
   }
-  xAxis = map(rightXPin, 1000, 1800, 1000, 2000);
-  analogWrite(steeringPin, xAxis);
-  delay(10);
 }
+
+void debug(int pin){
+  digitalWrite(pin, HIGH); 
+}
+
+void debugRemote(){
+  int valueX = pulseIn(rightXPin, HIGH);
+  int valueY = pulseIn(rightYPin, HIGH);
+  int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+
+  Serial.print("Value X = " + (String)valueX + "; Value Y = " + (String)valueY + "; Kill Switch = " + (String)valueKillSwitch);   
+  Serial.println("");
+  delay(100);
+}
+
