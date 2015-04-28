@@ -14,9 +14,9 @@ const byte servoRight = 11;
 
 const byte LEDPin = 13;
 
-int valueX = pulseIn(rightXPin, HIGH);
-int valueY = pulseIn(rightYPin, HIGH);
-int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+int valueX = 0;
+int valueY = 0;
+int valueKillSwitch = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -43,6 +43,7 @@ void loop() {
 
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
   if (shouldRun) {
+    Serial.println("Should run");
     function();
     // autonomous switch here
   }
@@ -60,7 +61,7 @@ void loop() {
 
 
 void function() {
-  yAxis = map(rightYPin, 1000, 1800, 0, 2);
+  yAxis = map(valueY, 1000, 1800, 0, 2);
   if (yAxis == 0) {                                    //Test for Reverse
     driveReverse();
     Serial.println("Reverse");
