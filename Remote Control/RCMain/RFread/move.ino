@@ -8,7 +8,7 @@ void driveReverse(){
   digitalWrite(driverPolarity, HIGH); 
 }
 
-void driveForward+++(){
+void driveForward(){
   digitalWrite(driverPower, HIGH);
   digitalWrite(driverPolarity, LOW);
 }
