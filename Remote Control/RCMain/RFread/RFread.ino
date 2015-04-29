@@ -2,7 +2,7 @@ const byte rightXPin = 0;
 const byte rightYPin = 1;
 const byte killSwitchPin = 3;
 
-const byte driverPower = 8;
+const byte driverPower = 13;
 const byte driverPolarity = 9;
 const byte steeringPin = 7;
 
@@ -35,7 +35,7 @@ void setup() {
 void loop() {
   function();
   //debugRemote();
-  //debug(LEDPin);
+  debug(LEDPin);
 //  digitalWrite(driverPolarity, HIGH);
 //  delay(500);
 //  digitalWrite(driverPolarity, LOW);
@@ -62,7 +62,7 @@ void function() {
     }
     
     else if (valueY < 1390) {                    //Test for Forward
-      driveReverse();
+      fakeDriveReverse();          //Just for now
       Serial.println("REVERSE");
     }
     else{                             //Test for No Movement
@@ -81,6 +81,9 @@ void function() {
 
 void debug(int pin){
   digitalWrite(pin, HIGH); 
+  delay(1000);
+  digitalWrite(pin, LOW);
+  delay(1000);
 }
 
 void debugRemote(){

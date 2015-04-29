@@ -18,6 +18,10 @@ void driveStop(){
   digitalWrite(driverPolarity, LOW);
 }
 
+void fakeDriveReverse(){
+ digitalWrite(driverPower, LOW); 
+}
+
 //Movement:
 void forwardFast(int x){
   for(int i=0;i<x;i++){
