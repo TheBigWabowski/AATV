@@ -14,6 +14,10 @@ const byte servoRight = 11;
 
 const byte LEDPin = 13;
 
+int valueX = 0;
+int valueY = 0;
+int valueKillSwitch = 0;
+
 void setup() {
   Serial.begin(9600);
   pinMode(rightXPin, INPUT);
@@ -33,7 +37,16 @@ void setup() {
 }
 
 void loop() {
-  function();
+  valueX = pulseIn(rightXPin, HIGH);
+  valueY = pulseIn(rightYPin, HIGH);
+  valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+
+  bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
+  if (shouldRun) {
+    Serial.println("Should run");
+    function();
+    // autonomous switch here
+  }
   //debugRemote();
   debug(LEDPin);
 //  digitalWrite(driverPolarity, HIGH);
@@ -48,6 +61,7 @@ void loop() {
 
 
 void function() {
+<<<<<<< HEAD
   int valueX = pulseIn(rightXPin, HIGH);
   int valueY = pulseIn(rightYPin, HIGH);
   int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
@@ -72,11 +86,24 @@ void function() {
     xAxis = map(valueX, 1000, 1800, 1000, 2000);
     analogWrite(steeringPin, xAxis);
     delay(10);
+=======
+  yAxis = map(valueY, 1000, 1800, 0, 2);
+  if (yAxis == 0) {                                    //Test for Reverse
+    driveReverse();
+    Serial.println("Reverse");
+>>>>>>> origin/master
   }
-  else{
-    Serial.println("OFF");
+  else if (yAxis == 1) {                             //Test for No Movement
+    driveStop();
+    Serial.println("No Movement");
   }
-  delay(100);
+  else if (yAxis == 2) {                    //Test for Forward
+    driveForward();
+    Serial.println("Forward");
+  }
+  else {
+    digitalWrite(LEDPin, HIGH);
+  }
 }
 
 void debug(int pin){
