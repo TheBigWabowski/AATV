@@ -5,6 +5,7 @@ const byte killSwitchPin = 3;
 const byte driverOne = 8;
 const byte driverTwo = 9;
 const byte steeringPin = 7;
+const byte alwaysOn = 6;
 
 byte xAxis = 0;
 byte yAxis = 0;
@@ -37,19 +38,19 @@ void setup() {
 }
 
 void loop() {
-  valueX = pulseIn(rightXPin, HIGH);
-  valueY = pulseIn(rightYPin, HIGH);
-  valueKillSwitch = pulseIn(killSwitchPin, HIGH);
-
-  bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
-  if (shouldRun) {
-    Serial.println("Should run");
-    function();
-    // autonomous switch here
-  }
-  else {
-   halt(); 
-  }
+//  valueX = pulseIn(rightXPin, HIGH);
+//  valueY = pulseIn(rightYPin, HIGH);
+//  valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+//
+//  bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
+//  if (shouldRun) {
+//    Serial.println("Should run");
+//    function();
+//    // autonomous switch here
+//  }
+//  else {
+//   halt(); 
+//  }
 }
 
 

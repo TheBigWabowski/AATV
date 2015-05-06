@@ -6,21 +6,19 @@ const int rightReverseFast = 1000;
 void go(){
   digitalWrite(driverOne, HIGH);
   digitalWrite(driverTwo, LOW);
+  digitalWrite(LEDPin, HIGH);
 }
 
 void goBack(){
  digitalWrite(driverOne, LOW);
  digitalWrite(driverTwo, HIGH); 
-}
-
-void coast(){
- digitalWrite(driverOne, LOW);
- digitalWrite(driverTwo, LOW); 
+ digitalWrite(LEDPin, HIGH);
 }
 
 void halt(){
- digitalWrite(driverOne, HIGH);
- digitalWrite(driverTwo, HIGH);
+ digitalWrite(driverOne, LOW);
+ digitalWrite(driverTwo, LOW);  
+ digitalWrite(LEDPin, LOW);
 }
 
 
