@@ -5,7 +5,7 @@ const byte killSwitchPin = 3;
 const byte driverOne = 8;
 const byte driverTwo = 9;
 const byte steeringPin = 7;
-const byte alwaysOn = 6;
+const byte killerSwitch = 6;
 
 byte xAxis = 0;
 byte yAxis = 0;
@@ -38,6 +38,10 @@ void setup() {
 }
 
 void loop() {
+  go();
+  delay(10000);
+  halt();
+  delay(10000);
 //  valueX = pulseIn(rightXPin, HIGH);
 //  valueY = pulseIn(rightYPin, HIGH);
 //  valueKillSwitch = pulseIn(killSwitchPin, HIGH);
@@ -73,7 +77,7 @@ void function() {
       Serial.println("REVERSE");
     }
     else{                             //Test for No Movement
-      coast();
+halt();
       Serial.println("STILL");
     }
     xAxis = map(valueX, 1000, 1800, 1000, 2000);

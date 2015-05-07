@@ -4,21 +4,22 @@ const int rightForwardFast = 2000;
 const int rightReverseFast = 1000;
 
 void go(){
+  digitalWrite(killerSwitch, LOW);
   digitalWrite(driverOne, HIGH);
   digitalWrite(driverTwo, LOW);
   digitalWrite(LEDPin, HIGH);
 }
 
 void goBack(){
- digitalWrite(driverOne, LOW);
- digitalWrite(driverTwo, HIGH); 
- digitalWrite(LEDPin, HIGH);
+  digitalWrite(killerSwitch, LOW);
+  digitalWrite(driverOne, LOW);
+  digitalWrite(driverTwo, HIGH); 
+  digitalWrite(LEDPin, HIGH);
 }
 
 void halt(){
- digitalWrite(driverOne, LOW);
- digitalWrite(driverTwo, LOW);  
- digitalWrite(LEDPin, LOW);
+  digitalWrite(killerSwitch, LOW);  
+  digitalWrite(LEDPin, LOW);
 }
 
 
@@ -111,6 +112,7 @@ void ServoMove(int servo,int PW){
   delayMicroseconds(PW);
   digitalWrite(servo,LOW);
 }
+
 
 
 
