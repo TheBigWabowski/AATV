@@ -1,5 +1,5 @@
 killswitch = 5
-rightx = 0
+rightx = 3
 righty = 1
 
 leftFaceKnob = 6
