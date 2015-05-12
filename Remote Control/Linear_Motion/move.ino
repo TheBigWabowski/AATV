@@ -3,25 +3,34 @@ const int leftReverseFast = 2000;
 const int rightForwardFast = 2000;
 const int rightReverseFast = 1000;
 
-void go(){
-  digitalWrite(killerSwitch, LOW);
-  digitalWrite(driverOne, HIGH);
-  digitalWrite(driverTwo, LOW);
-  digitalWrite(LEDPin, HIGH);
-}
+//void go(){
+//  digitalWrite(killerSwitch, LOW);
+//  digitalWrite(driverOne, HIGH);
+//  digitalWrite(driverTwo, LOW);
+//  digitalWrite(LEDPin, HIGH);
+//}
+//
+//void goBack(){
+//  digitalWrite(killerSwitch, LOW);
+//  digitalWrite(driverOne, LOW);
+//  digitalWrite(driverTwo, HIGH); 
+//  digitalWrite(LEDPin, HIGH);
+//}
+//
+//void halt(){
+//  digitalWrite(killerSwitch, LOW);  
+//  digitalWrite(LEDPin, LOW);
+//}
 
-void goBack(){
-  digitalWrite(killerSwitch, LOW);
-  digitalWrite(driverOne, LOW);
-  digitalWrite(driverTwo, HIGH); 
-  digitalWrite(LEDPin, HIGH);
+void go(){
+ digitalWrite(drivePin, LOW); 
+ digitalWrite(LEDPin, HIGH);
 }
 
 void halt(){
-  digitalWrite(killerSwitch, LOW);  
-  digitalWrite(LEDPin, LOW);
+ digitalWrite(drivePin, HIGH); 
+ digitalWrite(LEDPin, LOW);
 }
-
 
 
 //void driveReverse(){

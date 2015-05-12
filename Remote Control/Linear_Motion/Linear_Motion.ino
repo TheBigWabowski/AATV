@@ -2,16 +2,19 @@ const byte rightXPin = 0;
 const byte rightYPin = 1;
 const byte killSwitchPin = 3;
 
-const byte driverOne = 8;
-const byte driverTwo = 9;
+//const byte driverOne = 8;
+//const byte driverTwo = 9;
 const byte steeringPin = 7;
-const byte killerSwitch = 6;
+//const byte killerSwitch = 6;
+const byte drivePin = 9;
+
+const byte IRPin = 14;
 
 byte xAxis = 0;
 byte yAxis = 0;
 
 const byte servoLeft = 10;
-const byte servoRight = 11;
+const byte servoRight = 11; 
 
 const byte LEDPin = 13;
 
@@ -29,19 +32,18 @@ void setup() {
   pinMode(servoLeft, OUTPUT);
   pinMode(servoRight, OUTPUT);
 
-  pinMode(driverOne, OUTPUT);
-  pinMode(driverTwo, OUTPUT);
+//  pinMode(driverOne, OUTPUT);
+//  pinMode(driverTwo, OUTPUT);
   pinMode(steeringPin, OUTPUT);
+  pinMode(drivePin, OUTPUT);
 
+  pinMode(IRPin, INPUT);
 
   pinMode(LEDPin, OUTPUT);
 }
 
 void loop() {
-  go();
-  delay(10000);
-  halt();
-  delay(10000);
+  getDistance();
 //  valueX = pulseIn(rightXPin, HIGH);
 //  valueY = pulseIn(rightYPin, HIGH);
 //  valueKillSwitch = pulseIn(killSwitchPin, HIGH);
@@ -71,11 +73,11 @@ void function() {
       go();
       Serial.println("FORWARD");
     }
-    
-    else if (valueY < 1390) {                    //Test for Forward
-      goBack();
-      Serial.println("REVERSE");
-    }
+//    
+//    else if (valueY < 1390) {                    //Test for Forward
+//      goBack();
+//      Serial.println("REVERSE");
+//    }
     else{                             //Test for No Movement
 halt();
       Serial.println("STILL");
