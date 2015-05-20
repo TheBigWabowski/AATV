@@ -33,8 +33,6 @@ void setup() {
 
   pinMode(servoSteer, OUTPUT);
 
-  pinMode(steeringPin, OUTPUT);
-  pinMode(drivePin, OUTPUT);
 
   pinMode(IRPin, INPUT);
 
@@ -43,10 +41,16 @@ void setup() {
 }
 
 void loop() {
+//  for(int i = 0; i < 10; i++) {
+//    turnLeft();
+//  }
+//  for(int i = 0; i < 10; i++) {
+//    turnRight();
+//  }
+
   turnRight();
-//  delay(500);
-  //turnLeft();
-  
+//  delay(2000);
+
   //getDistance();
 
 
@@ -85,11 +89,11 @@ void function() {
   //      Serial.println("REVERSE");
   //    }
   else {                            //Test for No Movement
-    halt();
+//    halt();
     Serial.println("STILL");
   }
   xAxis = map(valueX, 1000, 1800, 1000, 2000);
-  analogWrite(steeringPin, xAxis);
+  analogWrite(servoSteer, xAxis);
   delay(10);
 }
 
@@ -111,13 +115,13 @@ void debugRemote() {
 }
 
 void turnLeft() {
-  servoMove(servoSteer, leftSteerPulseWidth);
+  ServoMove(servoSteer, leftSteerPulseWidth);
   delay(20);
   currentSteerPos = "left";
 }
 
 void turnRight(){
-  servoMove(servoSteer, rightSteerPulseWidth);
+  ServoMove(servoSteer, rightSteerPulseWidth);
   delay(20);
   currentSteerPos = "right";
 }

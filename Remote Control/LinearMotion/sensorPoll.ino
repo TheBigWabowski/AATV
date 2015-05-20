@@ -3,5 +3,5 @@ void getDistance(){
  if(IRValue <= 50){
   go(); 
  }
- else{halt();}
+// else{halt();}
 }

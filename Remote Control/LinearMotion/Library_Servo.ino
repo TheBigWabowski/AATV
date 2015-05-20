@@ -6,14 +6,14 @@ const int rightReverseFast = 1000;
 
 
 void go(){
- digitalWrite(drivePin, LOW);
+// digitalWrite(drivePin, LOW);
  digitalWrite(LEDPin, HIGH);
 }
-
-void halt(){
- digitalWrite(drivePin, HIGH);
- digitalWrite(LEDPin, LOW);
-}
+//
+//void halt(){
+// digitalWrite(drivePin, HIGH);
+// digitalWrite(LEDPin, LOW);
+//}
 
 //Movement:
 void forwardFast(int x){
