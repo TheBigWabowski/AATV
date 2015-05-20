@@ -1,26 +1,25 @@
+// SERVO PINS \\
 const byte rightXPin = 0;
 const byte rightYPin = 1;
 const byte killSwitchPin = 3;
-
-//const byte driverOne = 8;
-//const byte driverTwo = 9;
-const byte steeringPin = 7;
-//const byte killerSwitch = 6;
-const byte drivePin = 9;
-
 const byte IRPin = 14;
+const byte servoLeft = 10;
+const byte servoRight = 11;
+const byte servoSteer = 6;
+const byte LEDPin = 13;
 
+// CONSTANTS \\
 byte xAxis = 0;
 byte yAxis = 0;
 
-const byte servoLeft = 10;
-const byte servoRight = 11;
-
-const byte LEDPin = 13;
-
-int valueX = 0;
+int valueX = 0; // definitions->
 int valueY = 0;
 int valueKillSwitch = 0;
+
+int rightSteerPulseWidth = 2400;
+int leftSteerPulseWidth = 750;
+
+String currentSteerPos = "";
 
 void setup() {
   Serial.begin(9600);
@@ -32,18 +31,25 @@ void setup() {
   pinMode(servoLeft, OUTPUT);
   pinMode(servoRight, OUTPUT);
 
-  //  pinMode(driverOne, OUTPUT);
-  //  pinMode(driverTwo, OUTPUT);
+  pinMode(servoSteer, OUTPUT);
+
   pinMode(steeringPin, OUTPUT);
   pinMode(drivePin, OUTPUT);
 
   pinMode(IRPin, INPUT);
 
   pinMode(LEDPin, OUTPUT);
+  //turnRight();
 }
 
 void loop() {
-  getDistance();
+  turnRight();
+//  delay(500);
+  //turnLeft();
+  
+  //getDistance();
+
+
   //  valueX = pulseIn(rightXPin, HIGH);
   //  valueY = pulseIn(rightYPin, HIGH);
   //  valueKillSwitch = pulseIn(killSwitchPin, HIGH);
@@ -104,3 +110,18 @@ void debugRemote() {
   delay(100);
 }
 
+void turnLeft() {
+  servoMove(servoSteer, leftSteerPulseWidth);
+  delay(20);
+  currentSteerPos = "left";
+}
+
+void turnRight(){
+  servoMove(servoSteer, rightSteerPulseWidth);
+  delay(20);
+  currentSteerPos = "right";
+}
+
+void alignStraight() {
+  currentSteerPos = "straight";
+}
