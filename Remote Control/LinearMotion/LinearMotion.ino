@@ -100,6 +100,14 @@ void debugRemote() {
 
 void turnLeft() {
   ServoMove(servoSteer, leftSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, leftSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, leftSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, leftSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, leftSteerPulseWidth);
   digitalWrite(LEDPin, LOW);
   delay(1000);
   currentSteerPos = "left";
@@ -107,12 +115,28 @@ void turnLeft() {
 
 void turnRight(){
   ServoMove(servoSteer, rightSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, rightSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, rightSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, rightSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, rightSteerPulseWidth);
   digitalWrite(LEDPin, LOW);
   delay(1000);
   currentSteerPos = "right";
 }
 
 void alignStraight() {
+  ServoMove(servoSteer, middleSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, middleSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, middleSteerPulseWidth);
+  delay(100);
+  ServoMove(servoSteer, middleSteerPulseWidth);
+  delay(100);
   ServoMove(servoSteer, middleSteerPulseWidth);
   digitalWrite(LEDPin, HIGH);
   delay(1000);
