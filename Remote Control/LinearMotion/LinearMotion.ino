@@ -21,8 +21,9 @@ int valueX = 0;
 int valueY = 0;
 int valueKillSwitch = 0;
 
-int rightSteerPulseWidth = 2400;
-int leftSteerPulseWidth = 750;
+int rightSteerPulseWidth = 2500;
+int leftSteerPulseWidth = 700;
+int middleSteerPulseWidth = 1450;
 
 String currentSteerPos = "";
 
@@ -46,6 +47,9 @@ void setup() {
 
 void loop() {
   turnRight();     // <----- Code to Run goes here (currently test code)
+  alignStraight();
+  turnLeft();
+  alignStraight();
 }
 
 
@@ -96,16 +100,21 @@ void debugRemote() {
 
 void turnLeft() {
   ServoMove(servoSteer, leftSteerPulseWidth);
-  delay(20);
+  digitalWrite(LEDPin, LOW);
+  delay(1000);
   currentSteerPos = "left";
 }
 
 void turnRight(){
   ServoMove(servoSteer, rightSteerPulseWidth);
-  delay(20);
+  digitalWrite(LEDPin, LOW);
+  delay(1000);
   currentSteerPos = "right";
 }
 
 void alignStraight() {
+  ServoMove(servoSteer, middleSteerPulseWidth);
+  digitalWrite(LEDPin, HIGH);
+  delay(1000);
   currentSteerPos = "straight";
 }
