@@ -1,3 +1,13 @@
+// Linear_Motion.ino by Archer O'Neal-Odom and Ephraim Benson on May 20th, 2015
+// A medium sized car designed to be ridden by children that has been repurposed for 
+// Remote Control and partial autonomous function.
+
+
+/* 
+	Copyright Archer O'Neal-Odom and Ephraim Benson 2015.  All Rights Reserved. 
+        No part of these contents may be reproduced, copied, modified or adapted, 
+        without the prior written consent of the author, unless when used for educational and non-profit purposes.
+*/
 const byte rightXPin = 0;
 const byte rightYPin = 1;
 const byte killSwitchPin = 3;
