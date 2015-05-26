@@ -1,4 +1,9 @@
-// SERVO PINS \\
+// Linear_Motion.ino by Archer O'Neal-Odom and Ephraim Benson on May 20th, 2015
+// A medium sized car designed to be ridden by children that has been repurposed for
+// Remote Control and partial autonomous function.
+
+
+// SERVO PINS
 const byte rightXPin = 0;
 const byte rightYPin = 1;
 const byte killSwitchPin = 3;
@@ -8,11 +13,11 @@ const byte LEDPin = 13;
 const byte relayPower = 8;
 const byte relayPolarity = 9;
 
-// CONSTANTS \\
+// CONSTANTS
 byte xAxis = 0;
 byte yAxis = 0;
 
-int valueX = 0; // definitions->
+int valueX = 0;
 int valueY = 0;
 int valueKillSwitch = 0;
 
@@ -53,7 +58,7 @@ void givePower() {
 }
 
 void loop() {
-//debugRemote();
+  //debugRemote();
   mainFunction();
   //  givePower();
 
@@ -73,7 +78,7 @@ void mainFunction() {
   bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
   if (shouldRun) {
     Serial.println("Should run");
-    
+
     xAxis = map(valueX, 1000, 1800, 0, 2);
     //Serial.println(xAxis);
     if (xAxis == 2) { // left
@@ -85,7 +90,7 @@ void mainFunction() {
     } else {
       Serial.println("ERROR: INCOMPATIBLE X VALUE");
     }
-    
+
     yAxis = map(valueY, 1000, 1800, 0, 1);
     Serial.println(yAxis);
     if (yAxis == 1) { // stop
@@ -95,7 +100,7 @@ void mainFunction() {
     } else {
       Serial.println("ERROR: INCOMPATIBLE Y VALUE");
     }
-    
+
   } else {
     digitalWrite(relayPower, LOW); //STOP THE CAR
   }
@@ -127,10 +132,47 @@ void function() {
   analogWrite(servoSteer, xAxis);
   delay(10);
 }
+}
+
+void loop() {
+  turnRight();     // <----- Code to Run goes here (currently test code)
+  alignStraight();
+  turnLeft();
+  alignStraight();
+}
+
+
+//void function() {
+//  int valueX = pulseIn(rightXPin, HIGH);
+//  int valueY = pulseIn(rightYPin, HIGH);
+//  int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+//
+//    bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
+//      if (shouldRun) {                                   //Test for Kill Switch
+//      debug(LEDPin);
+//      //Serial.println("ON");
+//  if (valueY > 1460) {                                    //Test for Reverse
+//    go();
+//    Serial.println("FORWARD");                                                                                  //Not used for now
+//  }
+//
+//      else if (valueY < 1390) {                    //Test for Forward
+//        goBack();
+//        Serial.println("REVERSE");
+//      }
+//  else {                            //Test for No Movement
+//    halt();
+//    Serial.println("STILL");
+//  }
+//  xAxis = map(valueX, 1000, 1800, 1000, 2000);
+//  analogWrite(servoSteer, xAxis);                  //Steering
+//  delay(10);
+//}
+//}
 
 void debug(int pin) {
   digitalWrite(pin, HIGH);
-  delay(1000);
+  delay(1000);                      //Debug a Pin
   digitalWrite(pin, LOW);
   delay(1000);
 }
@@ -138,7 +180,7 @@ void debug(int pin) {
 void debugRemote() {
   int valueX = pulseIn(rightXPin, HIGH);
   int valueY = pulseIn(rightYPin, HIGH);
-  int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
+  int valueKillSwitch = pulseIn(killSwitchPin, HIGH);          //Debug the Remote
 
   Serial.print("Value X = " + (String)valueX + "; Value Y = " + (String)valueY + "; Kill Switch = " + (String)valueKillSwitch);
   Serial.println("");
@@ -158,6 +200,7 @@ void turnRight() {
     ServoMove(servoSteer, rightSteerPulseWidth);
     delay(10);
   }
+  currentSteerPos = "right";
 }
 
 void alignStraight() {
@@ -165,5 +208,7 @@ void alignStraight() {
     ServoMove(servoSteer, middleSteerPulseWidth);
     delay(10);
   }
-  currentSteerPos = "straight";
+  digitalWrite(LEDPin, LOW);
+  delay(1000);
+  currentSteerPos = "left";
 }
