@@ -58,29 +58,47 @@ void givePower() {
 }
 
 void loop() {
-  //debugRemote();
-  mainFunction();
-  //  givePower();
-
-  //  turnRight();
-
-  //getDistance();
-
-
-
+  getMode();
+  delay(10);
 }
 
-void mainFunction() {
-  valueX = pulseIn(rightXPin, HIGH);
-  valueY = pulseIn(rightYPin, HIGH);
+void getMode(){
   valueKillSwitch = pulseIn(killSwitchPin, HIGH);
 
-  bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
-  if (shouldRun) {
-    Serial.println("Should run");
+  bool RC = map(valueKillSwitch, 1000, 1800, 0, 1);
+  if (RC) {
+    RCFunction();
+  }
+  else{
+   fullAuto(); 
+  }
+}
 
+void fullAuto(){
+  valueRight = pulseIn(rightSensorPin, HIGH);
+  valueLeft = pulseIn(leftSensorPin, HIGH);
+  value = pulseIn(rightSensorPin, HIGH)- pulseIn(leftSensorPin, HIGH);
+  
+  if(valueRight&&valueLeft > 25){
+   alignStraight();
+   reverse();      //<-----Make it real Ephraim
+  }
+  else if(value < -200){
+   turnRight(); 
+  }
+  else if(value > 200){
+   turnLeft(); 
+  }
+  else{
+   go(); 
+  }
+}
+
+void RCFunction() {
+  valueX = pulseIn(rightXPin, HIGH);
+  valueY = pulseIn(rightYPin, HIGH);
+  
     xAxis = map(valueX, 1000, 1800, 0, 2);
-    //Serial.println(xAxis);
     if (xAxis == 2) { // left
       turnRight();
     } else if (xAxis == 1) { // straight
@@ -91,47 +109,20 @@ void mainFunction() {
       Serial.println("ERROR: INCOMPATIBLE X VALUE");
     }
 
-    yAxis = map(valueY, 1000, 1800, 0, 1);
+    yAxis = map(valueY, 1000, 1800, 0, 2);
     Serial.println(yAxis);
-    if (yAxis == 1) { // stop
-      digitalWrite(relayPower, HIGH);
-    } else if (yAxis == 0) { // forward
-      digitalWrite(relayPower, LOW);
-    } else {
+    if (yAxis == 1) { // stop that ass up
+      still();
+    } 
+    else if (yAxis == 0) { // forward dat ass up
+      go()
+    } 
+    else if (yAxis == 2) { // back dat ass up
+      reverse()
+    } 
+    else {
       Serial.println("ERROR: INCOMPATIBLE Y VALUE");
     }
-
-  } else {
-    digitalWrite(relayPower, LOW); //STOP THE CAR
-  }
-}
-
-
-void function() {
-  int valueX = pulseIn(rightXPin, HIGH);
-  int valueY = pulseIn(rightYPin, HIGH);
-  int valueKillSwitch = pulseIn(killSwitchPin, HIGH);
-
-  bool shouldRun = map(valueKillSwitch, 1000, 1800, 0, 1);
-  if (shouldRun) {                                   //Test for Kill Switch
-    Serial.println("ON");
-    //  if (valueY > 1460) {                                    //Test for Reverse
-    //    go();
-    //    Serial.println("FORWARD");
-    //  }
-    //
-    //    else if (valueY < 1390) {                    //Test for Forward
-    //      goBack();
-    //      Serial.println("REVERSE");
-  }
-  else {                            //Test for No Movement
-    //    halt();
-    // Serial.println("STILL");
-  }
-  xAxis = map(valueX, 1000, 1800, 1000, 2000);
-  analogWrite(servoSteer, xAxis);
-  delay(10);
-}
 }
 
 void loop() {
@@ -211,4 +202,16 @@ void alignStraight() {
   digitalWrite(LEDPin, LOW);
   delay(1000);
   currentSteerPos = "left";
+}
+
+void go(){
+ //Ephraim, please make it real 
+}
+
+void reverse(){
+ //Ephraim, please make it real   
+}
+
+void still(){
+ //Ephraim, please make it real 
 }
